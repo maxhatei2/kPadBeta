@@ -1,5 +1,5 @@
 from tkinter.filedialog import asksaveasfilename, askopenfilename
-from tkinter.messagebox import showerror
+from tkinter.messagebox import showerror, askyesno
 from errors import Errors
 
 OpenPath = None
@@ -30,6 +30,7 @@ def saveAs(textbox):
             with open(SaveAsPath, "w", encoding="utf-8") as f:
                 f.write(textbox.get('1.0', 'end-1c'))
                 OpenPath = SaveAsPath
+                textbox.edit_modified(False)
         except PermissionError:
             showerror(f"kPad {Errors.IOPERMISSIONDENIED}", f"You do not have permission to write {OpenPath}")
         except OSError as e:
@@ -45,6 +46,7 @@ def save(textbox):
         try:
             with open(OpenPath, "w", encoding="utf-8") as f:
                 f.write(textbox.get('1.0', 'end-1c'))
+                textbox.edit_modified(False)
         except PermissionError:
             showerror(f"kPad {Errors.IOPERMISSIONDENIED}", f"You do not have permission to write {OpenPath}")
         except OSError as e:
@@ -54,3 +56,13 @@ def save(textbox):
                 showerror(f"kPad {Errors.UNKNOWNWRITEERROR}", f"File writing failed with error {e}")
     else:
         saveAs(textbox=textbox)
+
+def new(textbox):
+    global OpenPath
+    if textbox.edit_modified():
+        if not askyesno('kPad - Unsaved changes', 'Discard changes and start a new file?'):
+            return
+        else:
+            textbox.delete('1.0', 'end-1c')
+            OpenPath = None
+            textbox.edit_modified(False)

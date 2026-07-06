@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from CTkMenuBar import CTkMenuBar, CustomDropdownMenu
-from filelogic import openfile, saveAs, save
+from filelogic import openfile, saveAs, save, new
 
 # Universal
 
@@ -30,6 +30,7 @@ def init_menubar(parent, textbox, version_label):
 
 
     file_dropdown = CustomDropdownMenu(widget=file_button)
+    file_dropdown.add_option(option="New...", command=lambda: new(textbox=textbox))
     file_dropdown.add_option(option="Save...", command=lambda: save(textbox=textbox))
     file_dropdown.add_option(option="Save As...", command=lambda: saveAs(textbox=textbox))
     file_dropdown.add_option(option="Open...", command=lambda: openfile(textbox=textbox))
