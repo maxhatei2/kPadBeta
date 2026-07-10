@@ -66,3 +66,4 @@ def new(textbox):
             textbox.delete('1.0', 'end-1c')
             OpenPath = None
             textbox.edit_modified(False)
+

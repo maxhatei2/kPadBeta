@@ -6,7 +6,7 @@ It's rebuilt from the bottom-up with much cleaner code divided in multiple files
 
 ## Status
 
-Current version is beta 0.11.
+Current version is beta 0.14.
 
 ## Versioning
 
@@ -18,19 +18,32 @@ Make sure you have Python 3.10 or higher installed.
 
 ## Installation
 
-Clone or download the repository, create a venv by using `python3 -m venv env` command, pip-install the requirements file and run `main.py`.
+Download and extract the repository (or Git-clone it), then move in the directory and run:
 
-## Roadmap (as of 0.1)
+### For Windows (PowerShell)
 
-- Unified Save / Save As behavior
+`python -m venv env
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& .\Scripts\Activate.ps1)
+pip install customtkinter CTkMenuBar
+python main.py
+`
+
+### For Linux/Mac
+
+`
+python3 -m venv env
+sh ./src/activate
+pip install customtkinter CTkMenuBar
+python3 main.py
+`
+
+## Roadmap (as of 0.14)
+
+- Translation support
 
 - Remember last opened file between sessions
 
-- Keyboard shortcuts (Ctrl+O, Ctrl+S, Ctrl+N)
-
-- Window title reflects current file + unsaved changes
-
-- Basic error handling for file operations
+- Config support
 
 ## Changelog
 
